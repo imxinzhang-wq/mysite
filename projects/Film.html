@@ -445,7 +445,7 @@
 
   
     <div class="summary-thumbnail-outer-container">
-      <a href="#" class="
+      <a href="./Film/" class="
           summary-thumbnail-container
           sqs-gallery-image-container
           
@@ -627,7 +627,7 @@
 
   
     <div class="summary-thumbnail-outer-container">
-      <a href="#" class="
+      <a href="./Film/" class="
           summary-thumbnail-container
           sqs-gallery-image-container
           
@@ -809,7 +809,7 @@
 
   
     <div class="summary-thumbnail-outer-container">
-      <a href="#" class="
+      <a href="./Film/" class="
           summary-thumbnail-container
           sqs-gallery-image-container
           
@@ -991,7 +991,7 @@
 
   
     <div class="summary-thumbnail-outer-container">
-      <a href="#" class="
+      <a href="./Film/" class="
           summary-thumbnail-container
           sqs-gallery-image-container
           
@@ -1173,7 +1173,7 @@
 
   
     <div class="summary-thumbnail-outer-container">
-      <a href="#" class="
+      <a href="./Film/" class="
           summary-thumbnail-container
           sqs-gallery-image-container
           
@@ -1355,7 +1355,7 @@
 
   
     <div class="summary-thumbnail-outer-container">
-      <a href="#" class="
+      <a href="./Film/" class="
           summary-thumbnail-container
           sqs-gallery-image-container
           
@@ -1537,7 +1537,7 @@
 
   
     <div class="summary-thumbnail-outer-container">
-      <a href="#" class="
+      <a href="./Film/" class="
           summary-thumbnail-container
           sqs-gallery-image-container
           
@@ -1719,7 +1719,7 @@
 
   
     <div class="summary-thumbnail-outer-container">
-      <a href="#" class="
+      <a href="./Film/" class="
           summary-thumbnail-container
           sqs-gallery-image-container
           
@@ -1901,7 +1901,7 @@
 
   
     <div class="summary-thumbnail-outer-container">
-      <a href="#" class="
+      <a href="./Film/" class="
           summary-thumbnail-container
           sqs-gallery-image-container
           
@@ -2083,7 +2083,7 @@
 
   
     <div class="summary-thumbnail-outer-container">
-      <a href="#" class="
+      <a href="./Film/" class="
           summary-thumbnail-container
           sqs-gallery-image-container
           
@@ -2265,7 +2265,7 @@
 
   
     <div class="summary-thumbnail-outer-container">
-      <a href="#" class="
+      <a href="./Film/" class="
           summary-thumbnail-container
           sqs-gallery-image-container
           
@@ -2447,7 +2447,7 @@
 
   
     <div class="summary-thumbnail-outer-container">
-      <a href="#" class="
+      <a href="./Film/" class="
           summary-thumbnail-container
           sqs-gallery-image-container
           
@@ -2629,7 +2629,7 @@
 
   
     <div class="summary-thumbnail-outer-container">
-      <a href="#" class="
+      <a href="./Film/" class="
           summary-thumbnail-container
           sqs-gallery-image-container
           
@@ -2811,7 +2811,7 @@
 
   
     <div class="summary-thumbnail-outer-container">
-      <a href="#" class="
+      <a href="./Film/" class="
           summary-thumbnail-container
           sqs-gallery-image-container
           
@@ -2993,7 +2993,7 @@
 
   
     <div class="summary-thumbnail-outer-container">
-      <a href="#" class="
+      <a href="./Film/" class="
           summary-thumbnail-container
           sqs-gallery-image-container
           
@@ -3175,7 +3175,7 @@
 
   
     <div class="summary-thumbnail-outer-container">
-      <a href="#" class="
+      <a href="./Film/" class="
           summary-thumbnail-container
           sqs-gallery-image-container
           
@@ -3362,5 +3362,40 @@
 
 
   
+
+    <style id="film-lightbox-style">
+    /* Fullscreen overlay */
+    #craft-lightbox-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.92);display:none;align-items:center;justify-content:center;z-index:2147483646}
+    #craft-lightbox-overlay.show{display:flex}
+    #craft-lightbox-overlay img{max-width:calc(100% - 40px);max-height:calc(100% - 80px);box-shadow:0 12px 40px rgba(0,0,0,.6);border-radius:2px;object-fit:contain}
+    #craft-lightbox-overlay .cx-close{position:absolute;top:20px;right:20px;color:#fff;background:transparent;border:0;font-size:28px;line-height:1;cursor:pointer}
+    #craft-lightbox-overlay .cx-caption{position:fixed;left:0;right:0;bottom:20px;color:#fff;text-align:center;font-size:14px;opacity:.9}
+    </style>
+
+    <div id="craft-lightbox-overlay" aria-hidden="true">
+      <button class="cx-close" aria-label="Close">×</button>
+      <div class="cx-inner" role="dialog" aria-modal="true"></div>
+      <div class="cx-caption" aria-hidden="true"></div>
+    </div>
+    <script>
+    (function(){
+      if(window.__xz_lightbox_installed) return; window.__xz_lightbox_installed = true;
+      var overlay = document.getElementById('craft-lightbox-overlay');
+      function show(src, caption){
+        if(!overlay) return;
+        var inner = overlay.querySelector('.cx-inner'); inner.innerHTML = '';
+        var img = new Image(); img.alt = caption || ''; img.decoding = 'async';
+        img.style.maxWidth = 'calc(100% - 40px)'; img.style.maxHeight = 'calc(100% - 80px)'; img.style.objectFit = 'contain';
+        img.src = src; inner.appendChild(img);
+        overlay.querySelector('.cx-caption').textContent = caption || '';
+        overlay.classList.add('show'); overlay.setAttribute('aria-hidden','false'); document.body.style.overflow = 'hidden';
+      }
+      function hide(){ if(!overlay) return; overlay.classList.remove('show'); overlay.setAttribute('aria-hidden','true'); var inner = overlay.querySelector('.cx-inner'); if(inner) inner.innerHTML = ''; overlay.querySelector('.cx-caption').textContent = ''; document.body.style.overflow = ''; }
+      if(overlay){ var btn = overlay.querySelector('.cx-close'); if(btn) btn.addEventListener('click', hide); overlay.addEventListener('click', function(e){ if(e.target===overlay) hide(); }); }
+      function findImageUrlFromAnchor(a){ if(!a) return null; var img = a.querySelector('img'); if(img) return img.getAttribute('data-image') || img.getAttribute('data-src') || img.getAttribute('data-srcset') || img.src || null; return a.getAttribute('data-image') || a.getAttribute('data-src') || null; }
+      document.addEventListener('click', function(e){ var a = e.target.closest('a.js-gallery-lightbox-opener, a.summary-thumbnail-container, a.sqs-gallery-image-container'); if(!a) return; var src = findImageUrlFromAnchor(a); if(src){ e.preventDefault(); var img = a.querySelector('img'); var caption = img && img.alt ? img.alt : a.getAttribute('data-title') || a.getAttribute('title') || ''; show(src, caption); } }, false);
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape') hide(); });
+    })();
+    </script>
 
 </div><div id="yui3-css-stamp" style="position: absolute !important; visibility: hidden !important"></div></body></html>
